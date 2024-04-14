@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function FormxLogo() {
+export default function MainLogo() {
   return (
     <Link
       href="/"

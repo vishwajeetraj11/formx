@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import { getUserAvatarUrl } from "@/utils/helpers";
 import { Button } from "@/components/ui/button";
+import { LogIn, LogOut } from "lucide-react";
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -31,7 +32,11 @@ export default async function AuthButton() {
         className="rounded-full"
       />
       <form action={signOut}>
-        <Button>Logout</Button>
+        <Button
+        variant="outline"
+        >
+          <LogOut size={16} />
+        </Button>
       </form>
     </div>
   ) : (
@@ -39,7 +44,7 @@ export default async function AuthButton() {
       href="/login"
       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
     >
-      Login
+      <LogIn size={16} />
     </Link>
   );
 }
