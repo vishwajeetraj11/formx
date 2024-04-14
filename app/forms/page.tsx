@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { Form } from "react-final-form";
-import { RenderFields } from "../components/forms/render-fields";
+import { RenderFields } from "@/components/forms/render-fields";
 
 export default function Home() {
   const [formFields, setFormFields] = useState<any>({

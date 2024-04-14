@@ -1,9 +1,5 @@
-import FormGenerator from "@/app/components/forms/form";
+import FormGenerator from "@/components/forms/form";
 
 export default function FormByIdPage() {
-  return (
-    <div>
-      <FormGenerator />
-    </div>
-  );
+  return <FormGenerator />;
 }
