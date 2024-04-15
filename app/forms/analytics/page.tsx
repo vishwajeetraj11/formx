@@ -7,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { BarChartHero } from "@/components/charts/bar-chart";
 
 type Props = {};
 
@@ -19,7 +20,7 @@ const Analytics = (props: Props) => {
         opts={{
           align: "start",
         }}
-        className="w-full"
+        className="w-full mb-10"
       >
         <CarouselContent>
           {Array.from({ length: 50 }).map((_, index) => (
@@ -37,6 +38,7 @@ const Analytics = (props: Props) => {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <BarChartHero />
     </div>
   );
 };
