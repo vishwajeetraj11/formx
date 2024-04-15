@@ -13,13 +13,15 @@ import {
 } from "@/components/ui/popover";
 import { useField } from "react-final-form";
 import { Label } from "@/components/ui/label";
+import Message from "./Message";
 
 type Props = {
   field: any;
 };
 
 const FormDatePicker = ({ field }: Props) => {
-  const { input } = useField(field.name);
+  const { input, meta } = useField(field.name);
+
   return (
     <>
       <Popover>
@@ -41,6 +43,9 @@ const FormDatePicker = ({ field }: Props) => {
                 <span>{field.placeholder}</span>
               )}
             </Button>
+            {(field.helpText || (meta.touched && meta.error)) && (
+              <Message field={field} meta={meta} key={JSON.stringify(meta)} />
+            )}
           </div>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">

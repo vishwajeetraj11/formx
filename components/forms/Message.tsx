@@ -14,6 +14,7 @@ const Message = (props: Props) => {
   if (meta.touched && meta.error) {
     text = meta.error;
   }
+
   return (
     <p
       className={cn(

@@ -21,6 +21,7 @@ export const renderFields = (field: any) => {
     placeholder: field.placeholder,
     required: field.required,
   };
+
   // Factory Pattern
   switch (field.type) {
     case "INPUT_TEXT":
@@ -93,7 +94,13 @@ export const renderFields = (field: any) => {
       );
     case "DATE_PICKER":
       return (
-        <Field name={field.name} validate={(value: string) => {}}>
+        <Field
+          name={field.name}
+          validate={(value: string) => {
+            if (!value && field.required) return field.errorMessage;
+            return "";
+          }}
+        >
           {({}) => <FormDatePicker field={field} />}
         </Field>
       );
