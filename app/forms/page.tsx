@@ -1,6 +1,6 @@
+import { AddFieldModal } from "@/components/modals/add-field";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-
 
 export default async function Home() {
   const supabase = createClient();
@@ -12,7 +12,10 @@ export default async function Home() {
   if (!user) {
     return redirect("/login");
   }
-  
 
-  return <div className="max-w-[1200px] mx-auto">Forms Listing</div>;
+  return (
+    <div className="max-w-[1200px] mx-auto">
+      <AddFieldModal />
+    </div>
+  );
 }
