@@ -21,3 +21,8 @@ export const regexTypes = {
     MATCHES: "Matches",
     NOT_MATCHES: "Not Matches",
 }
+
+export const validationTypes = {
+    LENGTH: "Length",
+    REGEX: "Regex",
+}
