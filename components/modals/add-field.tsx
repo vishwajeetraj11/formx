@@ -31,9 +31,9 @@ export const AddFieldModal = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>Add Fields</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your field here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
 
@@ -54,6 +54,11 @@ export const AddFieldModal = () => {
             {({ handleSubmit, values }) => {
               const isLengthValidation = values.validationType === "LENGTH";
               const isRegexValidation = values.validationType === "REGEX";
+              const showValidationType =
+                values.type !== "INPUT_CHECKBOX" &&
+                values.type !== "INPUT_RADIO" &&
+                values.type !== "COLOR_PICKER" &&
+                values.type !== "DATE_PICKER";
               return (
                 <form onSubmit={handleSubmit}>
                   <div>
@@ -106,34 +111,36 @@ export const AddFieldModal = () => {
                     <Label>Help Text</Label>
                     <Input placeholder="Please enter help text" />
                   </div>
-                  <Field name="validationType">
-                    {({ input }) => (
-                      <div>
-                        <Label>Validation Type</Label>
-                        <Select
-                          value={input.validationType}
-                          onValueChange={(val) => {
-                            input.onChange(val);
-                          }}
-                        >
-                          <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Select a regex type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              {Object.entries(validationTypes).map(
-                                ([value, label], i) => (
-                                  <SelectItem value={value} key={i}>
-                                    {label}
-                                  </SelectItem>
-                                )
-                              )}
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                  </Field>
+                  {showValidationType && (
+                    <Field name="validationType">
+                      {({ input }) => (
+                        <div>
+                          <Label>Validation Type</Label>
+                          <Select
+                            value={input.validationType}
+                            onValueChange={(val) => {
+                              input.onChange(val);
+                            }}
+                          >
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select a regex type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                {Object.entries(validationTypes).map(
+                                  ([value, label], i) => (
+                                    <SelectItem value={value} key={i}>
+                                      {label}
+                                    </SelectItem>
+                                  )
+                                )}
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      )}
+                    </Field>
+                  )}
                   {isLengthValidation && (
                     <>
                       <div className="flex gap-4">
