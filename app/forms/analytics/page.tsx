@@ -24,11 +24,18 @@ const Analytics = (props: Props) => {
       >
         <CarouselContent>
           {Array.from({ length: 50 }).map((_, index) => (
-            <CarouselItem key={index} className="basis-1/6">
+            <CarouselItem key={index} className="basis-1/4">
               <div className="p-1">
                 <Card>
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
-                    <span className="text-3xl font-semibold">{index + 1}</span>
+                  <CardContent className="flex flex-col items justify-center p-6">
+                    <p className="">School Admission Form</p>
+                    <p className="font-bold">
+                      450<span className="ml-2 font-normal">Responses</span>
+                    </p>
+                    <p className="font-bold">
+                      <span className="mr-2 font-normal">Created At</span>
+                      24th May, 2020
+                    </p>
                   </CardContent>
                 </Card>
               </div>
