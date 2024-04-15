@@ -28,6 +28,7 @@
     "clsx": "^2.1.0",
     "crypto-js": "^4.2.0",
     "date-fns": "^3.6.0",
+    "embla-carousel-react": "^8.0.2",
     "final-form": "^4.20.10",
     "geist": "^1.2.1",
     "lucide-react": "^0.368.0",
