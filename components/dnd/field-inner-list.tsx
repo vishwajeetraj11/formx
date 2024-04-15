@@ -1,17 +1,13 @@
-import { useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 import type {
-  DropResult,
   DraggableProvided,
-  DroppableProvided,
-  DroppableStateSnapshot,
   DraggableStateSnapshot,
 } from "@hello-pangea/dnd";
-import React, { CSSProperties } from "react";
+import React from "react";
 import { GripVerticalIcon, Pencil, PlusIcon, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { renderFields } from "@/lib/form";
-import { getBackgroundColor, getStyle, reorder } from "@/lib/utils/form";
+import { getStyle } from "@/lib/utils/form";
 
 const FieldInnerList = ({ fields }: { fields: any }) => {
   return (
