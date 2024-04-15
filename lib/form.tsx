@@ -54,17 +54,19 @@ export const renderFields = (field: any) => {
       );
     case "INPUT_RADIO":
       return (
-        <Field name={field.name} validate={(value: string) => {}}>
+        <Field name={field.name} type="radio" validate={(value: string) => {}}>
           {({ input }) => (
             <>
               <Label className="mb-2 block">{field.label}</Label>
               <RadioGroup value={input.value} onChange={input.onChange}>
-                {field.options?.map((option: string, i: number) => (
-                  <div key={i} className="flex items-center space-x-2">
-                    <RadioGroupItem value={option} id={option} />
-                    <Label htmlFor={option}>{option}</Label>
-                  </div>
-                ))}
+                {["male", "daddy", "milind"]?.map(
+                  (option: string, i: number) => (
+                    <div key={i} className="flex items-center space-x-2">
+                      <RadioGroupItem value={option} id={option + i + 1} />
+                      <Label htmlFor={option + i + 1}>{option}</Label>
+                    </div>
+                  )
+                )}
               </RadioGroup>
             </>
           )}
