@@ -1,6 +1,7 @@
 "use client";
 
 import { Label } from "@/components/ui/label";
+import { Tables } from "@/types/supabase";
 import {
   CheckCircleIcon,
   FileIcon,
@@ -233,7 +234,7 @@ function formatFileSize(bytes?: number) {
 }
 
 interface Props {
-  field: any;
+  field: Tables<"form_fields">;
 }
 // https://edgestore.dev/docs/components/multi-file
 const FormFilePicker = (props: Props) => {

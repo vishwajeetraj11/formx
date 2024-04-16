@@ -4,9 +4,10 @@ import type { DropResult } from "@hello-pangea/dnd";
 import React from "react";
 import { reorder } from "@/lib/utils/form";
 import { List } from "../dnd/list";
+import { Tables } from "@/types/supabase";
 
 interface Props {
-  fields: any;
+  fields: Tables<"form_fields">[];
 }
 
 export const RenderFields = (props: Props) => {

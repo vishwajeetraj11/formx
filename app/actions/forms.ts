@@ -1,7 +1,8 @@
 "use server";
 
 import OpenAI from "openai";
-import { prompt } from "@/lib/data/prompt";
+import { getPrompt } from "@/lib/data/prompt";
+import { createClient } from "@/utils/supabase/server";
 
 export const generateForm = async (query: string, provider: Model) => {
   const model =
@@ -31,6 +32,10 @@ export const generateForm = async (query: string, provider: Model) => {
   });
 
   try {
+    const supabase = createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
     if (!query)
       return {
         status: false,
@@ -49,7 +54,7 @@ export const generateForm = async (query: string, provider: Model) => {
         },
         {
           role: "user",
-          content: prompt(query),
+          content: getPrompt(query),
         },
       ],
 
@@ -60,6 +65,25 @@ export const generateForm = async (query: string, provider: Model) => {
 
     try {
       json = JSON.parse(openaiResponse?.choices?.[0]?.message?.content || "");
+
+      const { data, error } = await supabase
+        .from("forms")
+        .insert([
+          {
+            title: json?.formTitle || " ",
+            author_id: user?.id,
+          },
+        ])
+        .select("*");
+
+      if (error) {
+        console.log(error);
+        // thro/w Error('rror inserting form')
+      }
+      if (!data) return;
+      const formId = data?.[0].id;
+
+      // const fields = await supabase.from('form_fields').insert([{form_id: form.data.id, }])
 
       if (!json) {
         return {

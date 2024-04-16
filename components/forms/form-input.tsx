@@ -3,9 +3,10 @@ import { Label } from "@/components/ui/label";
 import React from "react";
 import { Field } from "react-final-form";
 import Message from "./Message";
+import { Tables } from "@/types/supabase";
 
 type Props = {
-  field: any;
+  field: Tables<"form_fields">;
 };
 
 const FormInput = ({ field }: Props) => {
@@ -15,9 +16,9 @@ const FormInput = ({ field }: Props) => {
   };
 
   let updatedProps = getHTMLAttributesForInputType(field, defaultProps);
-
+  const validationFn = getValidationFn(field);
   return (
-    <Field name={field.name} validate={getValidationFn(field.type)}>
+    <Field name={field.name} validate={(value) => validationFn(value, field)}>
       {({ input, meta }) => (
         <div>
           <Label className="mb-2 block">{field.label}</Label>
@@ -26,7 +27,7 @@ const FormInput = ({ field }: Props) => {
             onChange={input.onChange}
             {...updatedProps}
           />
-          {field.helpText && <Message field={field} meta={meta} />}
+          {field.help_text && <Message field={field} meta={meta} />}
         </div>
       )}
     </Field>
@@ -36,12 +37,12 @@ const FormInput = ({ field }: Props) => {
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;
 
 export const validationFns = {
-  email: (value: string, field: any) => {
+  email: (value: string, field: Tables<"form_fields">): string => {
     if (!value && field.required) return "Email is required";
     if (!EMAIL_REGEX.test(value)) return "Email is invalid";
     return "";
   },
-  url: (value: string, field: any) => {
+  url: (value: string, field: Tables<"form_fields">): string => {
     try {
       if (field.required) {
         if (!value) return "Url is required";
@@ -52,42 +53,45 @@ export const validationFns = {
       return "";
     }
   },
+  text: (value: string, field: Tables<"form_fields">): string => "",
+  number: (value: string, field: Tables<"form_fields">): string => "",
+  password: (value: string, field: Tables<"form_fields">): string => "",
 };
 
-export const getValidationFn = (fieldType: string) => {
-  switch (fieldType) {
+export const getValidationFn = (field: Tables<"form_fields">) => {
+  switch (field.field_type) {
     case "INPUT_TEXT":
-      return () => {};
+      return validationFns.text;
     case "INPUT_NUMBER":
-      return () => {};
+      return validationFns.number;
     case "INPUT_PASSWORD":
-      return () => {};
+      return validationFns.password;
     case "INPUT_EMAIL":
       return validationFns.email;
     case "INPUT_URL":
       return validationFns.url;
     default:
-      return () => {};
+      return validationFns.text;
   }
 };
 
 export const getHTMLAttributesForInputType = (
-  field: any,
-  defaultProps: Record<string, string>
+  field: Tables<"form_fields">,
+  defaultProps: Record<string, unknown>
 ) => {
   const baseAttributes = {
     ...defaultProps,
   };
 
-  switch (field.type) {
+  switch (field.field_type) {
     case "INPUT_TEXT":
       return { ...baseAttributes, type: "text" };
     case "INPUT_NUMBER":
       return {
         ...baseAttributes,
         type: "number",
-        min: field.min,
-        max: field.max,
+        min: field.min_value,
+        max: field.max_value,
       };
     case "COLOR_PICKER":
       return { ...baseAttributes, type: "color" };

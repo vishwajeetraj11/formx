@@ -6,8 +6,15 @@ import type {
 import React from "react";
 import { getBackgroundColor } from "@/lib/utils/form";
 import { InnerList } from "./inner-list";
+import { Tables } from "@/types/supabase";
 
-export const List = ({ listId, fields }: { listId: string; fields: any }) => {
+export const List = ({
+  listId,
+  fields,
+}: {
+  listId: string;
+  fields: Tables<"form_fields">[];
+}) => {
   return (
     <Droppable droppableId={listId}>
       {(

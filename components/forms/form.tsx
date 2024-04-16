@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 
 import { Form } from "react-final-form";
 import { RenderFields } from "./render-fields";
+import { Tables } from "@/types/supabase";
 
 interface FormProps {
-  formFields: any;
+  formFields: { fields: Tables<"form_fields">[] };
 }
 
 export default function FormGenerator({ formFields }: FormProps) {

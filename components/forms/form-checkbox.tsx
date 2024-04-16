@@ -1,10 +1,11 @@
 "use client";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { Tables } from "@/types/supabase";
 import { Field } from "react-final-form";
 
 interface Props {
-  field: any;
+  field: Tables<"form_fields">;
 }
 
 export function FormCheckbox({ field }: Props) {
@@ -26,8 +27,8 @@ export function FormCheckbox({ field }: Props) {
               </p>
             </div>
           </div>
-          {field.helpText && (
-            <p className="text-gray-600 text-xs mt-2">{field.helpText}</p>
+          {field.help_text && (
+            <p className="text-gray-600 text-xs mt-2">{field.help_text}</p>
           )}
         </>
       )}

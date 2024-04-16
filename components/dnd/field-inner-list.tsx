@@ -8,11 +8,12 @@ import { GripVerticalIcon, Pencil, PlusIcon, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { renderFields } from "@/lib/form";
 import { getStyle } from "@/lib/utils/form";
+import { Tables } from "@/types/supabase";
 
-const FieldInnerList = ({ fields }: { fields: any }) => {
+const FieldInnerList = ({ fields }: { fields: Tables<"form_fields">[] }) => {
   return (
     <div className="flex flex-col">
-      {fields.map((field: any, index: number) => {
+      {fields.map((field, index: number) => {
         const iconClasses = [
           "transition-all duration-200",
           "cursor-pointer invisible group-hover:visible opacity-0 group-hover:opacity-100",
@@ -76,4 +77,6 @@ const FieldInnerList = ({ fields }: { fields: any }) => {
   );
 };
 
-export const FieldInnerListMemo = React.memo<{ fields: any }>(FieldInnerList);
+export const FieldInnerListMemo = React.memo<{
+  fields: Tables<"form_fields">[];
+}>(FieldInnerList);

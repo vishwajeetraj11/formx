@@ -1,9 +1,10 @@
 import { DroppableProvided } from "@hello-pangea/dnd";
 import { FieldInnerListMemo } from "./field-inner-list";
+import { Tables } from "@/types/supabase";
 
 interface InnerListProps {
   dropProvided: DroppableProvided;
-  fields: any;
+  fields: Tables<"form_fields">[];
 }
 
 export const InnerList = (props: InnerListProps) => {

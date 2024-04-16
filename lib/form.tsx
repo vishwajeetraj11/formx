@@ -15,15 +15,16 @@ import Message from "@/components/forms/Message";
 import FormDatePicker from "@/components/forms/form-date-picker";
 import { FormFilePicker } from "@/components/forms/form-file-picker";
 import { FormColorPicker } from "@/components/forms/form-color-picker";
+import { Tables } from "@/types/supabase";
 
-export const renderFields = (field: any) => {
+export const renderFields = (field: Tables<"form_fields">) => {
   const defaultProps = {
-    placeholder: field.placeholder,
-    required: field.required,
+    placeholder: field.placeholder || "",
+    required: Boolean(field.required),
   };
 
   // Factory Pattern
-  switch (field.type) {
+  switch (field.field_type) {
     case "INPUT_TEXT":
       return <FormInput field={field} />;
     case "INPUT_EMAIL":
@@ -47,7 +48,7 @@ export const renderFields = (field: any) => {
                 value={input.value}
                 onChange={input.onChange}
               />
-              {field.helpText && <Message meta={meta} field={field} />}
+              {field.help_text && <Message meta={meta} field={field} />}
             </>
           )}
         </Field>
@@ -99,7 +100,7 @@ export const renderFields = (field: any) => {
         <Field
           name={field.name}
           validate={(value: string) => {
-            if (!value && field.required) return field.errorMessage;
+            if (!value && field.required) return field.error_message;
             return "";
           }}
         >

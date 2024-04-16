@@ -9,17 +9,18 @@ import {
 } from "@/components/ui/popover";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { Tables } from "@/types/supabase";
 import { Paintbrush } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useField } from "react-final-form";
 
 interface Props {
-  field: any;
+  field: Tables<"form_fields">;
 }
 
 export function FormColorPicker({ field }: Props) {
-  const { input, meta } = useField(field.name, {
+  const { input, meta } = useField(field.name || "", {
     defaultValue: "#B4D455",
     type: "text",
   });

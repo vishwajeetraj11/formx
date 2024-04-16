@@ -14,9 +14,10 @@ import {
 import { useField } from "react-final-form";
 import { Label } from "@/components/ui/label";
 import Message from "./Message";
+import { Tables } from "@/types/supabase";
 
 type Props = {
-  field: any;
+  field: Tables<"form_fields">;
 };
 
 const FormDatePicker = ({ field }: Props) => {
@@ -43,7 +44,7 @@ const FormDatePicker = ({ field }: Props) => {
                 <span>{field.placeholder}</span>
               )}
             </Button>
-            {(field.helpText || (meta.touched && meta.error)) && (
+            {(field.help_text || (meta.touched && meta.error)) && (
               <Message field={field} meta={meta} key={JSON.stringify(meta)} />
             )}
           </div>
