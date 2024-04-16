@@ -19,7 +19,7 @@ const ResponsesById = async (props: Props) => {
   }
   const query = `*,responses (*, field_id (*))`;
   const responses = await supabase.from("forms").select(query).eq("id", id);
-  console.log(responses);
+  // console.log(responses);
   return <>p</>;
 };
 

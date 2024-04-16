@@ -11,7 +11,7 @@ interface FormProps {
 
 export default function FormGenerator({ formFields }: FormProps) {
   const onSubmit = async (values: Record<string, any>) => {
-    console.log(values);
+    // console.log(values);
   };
 
   return (
