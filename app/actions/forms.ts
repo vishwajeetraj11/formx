@@ -3,6 +3,7 @@
 import OpenAI from "openai";
 import { getPrompt } from "@/lib/data/prompt";
 import { createClient } from "@/utils/supabase/server";
+import { Tables } from "@/types/supabase";
 
 export const generateForm = async (query: string, provider: Model) => {
   const model =
@@ -61,7 +62,7 @@ export const generateForm = async (query: string, provider: Model) => {
       response_format: { type: "json_object" },
     });
 
-    let json = null;
+    let json: any = null;
 
     try {
       json = JSON.parse(openaiResponse?.choices?.[0]?.message?.content || "");
@@ -82,8 +83,14 @@ export const generateForm = async (query: string, provider: Model) => {
       }
       if (!data) return;
       const formId = data?.[0].id;
-
-      // const fields = await supabase.from('form_fields').insert([{form_id: form.data.id, }])
+      const _fields = json.fields.map((field: Tables<"form_fields">) => ({
+        ...field,
+        form_id: formId,
+        form_title: json?.formTitle,
+      }));
+      const { data: fieldsData, error: fieldsError } = await supabase
+        .from("form_fields")
+        .insert(_fields)
 
       if (!json) {
         return {
@@ -93,7 +100,7 @@ export const generateForm = async (query: string, provider: Model) => {
         };
       }
 
-      return { status: true, text: json };
+      return { status: true, text: json, formId };
     } catch (e) {
       console.log(e);
 

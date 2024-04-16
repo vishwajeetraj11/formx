@@ -6,7 +6,7 @@ import { RenderFields } from "./render-fields";
 import { Tables } from "@/types/supabase";
 
 interface FormProps {
-  formFields: { fields: Tables<"form_fields">[] };
+  formFields: Tables<"form_fields">[];
 }
 
 export default function FormGenerator({ formFields }: FormProps) {
@@ -24,7 +24,7 @@ export default function FormGenerator({ formFields }: FormProps) {
             className="flex flex-col gap-4 px-10 mt-10"
           >
             <RenderFields
-              fields={formFields?.fields}
+              fields={formFields}
               key={JSON.stringify(formFields)}
             />
             <Button type="submit">Submit</Button>
