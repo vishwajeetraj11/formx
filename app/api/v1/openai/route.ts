@@ -16,8 +16,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             );
         }
 
-        // Construct the prompt
-        const prompt = `Create a form with the following fields: ${query}`;
 
         // Query OpenAI's API
         const openaiResponse = await openAI.chat.completions.create({
