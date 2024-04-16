@@ -123,7 +123,7 @@ export const AddFieldModal = () => {
                             }}
                           >
                             <SelectTrigger className="w-[180px]">
-                              <SelectValue placeholder="Select a regex type" />
+                              <SelectValue placeholder="Select a validation type" />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectGroup>
@@ -141,7 +141,7 @@ export const AddFieldModal = () => {
                       )}
                     </Field>
                   )}
-                  {isLengthValidation && (
+                  {isLengthValidation && showValidationType && (
                     <>
                       <div className="flex gap-4">
                         {" "}
