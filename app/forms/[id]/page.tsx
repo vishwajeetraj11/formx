@@ -14,6 +14,7 @@ const FormByIdPage = async (props: Props) => {
     *
   )
 `;
+
   const { data } = await supabaseClient
     .from("forms")
     .select(query)

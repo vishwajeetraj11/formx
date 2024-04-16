@@ -79,7 +79,7 @@ export const generateForm = async (query: string, provider: Model) => {
 
       if (error) {
         console.log(error);
-        // thro/w Error('rror inserting form')
+        // throw Error('rror inserting form')
       }
       if (!data) return;
       const formId = data?.[0].id;

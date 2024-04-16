@@ -153,7 +153,7 @@ export type Database = {
           id: number
           response: string[] | null
           response_date: string | null
-          user_id: number | null
+          user_id: string | null
         }
         Insert: {
           field_id: number
@@ -161,7 +161,7 @@ export type Database = {
           id?: never
           response?: string[] | null
           response_date?: string | null
-          user_id?: number | null
+          user_id?: string | null
         }
         Update: {
           field_id?: number
@@ -169,7 +169,7 @@ export type Database = {
           id?: never
           response?: string[] | null
           response_date?: string | null
-          user_id?: number | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -184,6 +184,13 @@ export type Database = {
             columns: ["form_id"]
             isOneToOne: false
             referencedRelation: "forms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "responses_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
