@@ -17,5 +17,8 @@ export default async function FormByIdPage({
   }
 
   const data = await generateForm(query, model as Model);
-  return <FormGenerator formFields={data?.text} />;
+  if (data?.formId) {
+    redirect(`/forms/${data.formId}`);
+  }
+  return <></>;
 }
