@@ -53,9 +53,28 @@ export const validationFns = {
       return "";
     }
   },
-  text: (value: string, field: Tables<"form_fields">): string => "",
-  number: (value: string, field: Tables<"form_fields">): string => "",
-  password: (value: string, field: Tables<"form_fields">): string => "",
+  text: (value: string, field: Tables<"form_fields">): string => {
+    if (field.required) {
+      if (!value) return "This field is required";
+    }
+    return "";
+  },
+  number: (value: string, field: Tables<"form_fields">): string => {
+    if (field.required) {
+      if (!value) return "This field is required";
+    }
+    if (field.min_value && parseInt(value) < field.min_value)
+      return `Value should be greater than ${field.min_value}`;
+    if (field.max_value && parseInt(value) > field.max_value)
+      return `Value should be less than ${field.max_value}`;
+    return "";
+  },
+  password: (value: string, field: Tables<"form_fields">): string => {
+    if (field.required) {
+      if (!value) return "This field is required";
+    }
+    return "";
+  },
 };
 
 export const getValidationFn = (field: Tables<"form_fields">) => {
@@ -77,7 +96,7 @@ export const getValidationFn = (field: Tables<"form_fields">) => {
 
 export const getHTMLAttributesForInputType = (
   field: Tables<"form_fields">,
-  defaultProps: Record<string, unknown>
+  defaultProps: Record<string, unknown>,
 ) => {
   const baseAttributes = {
     ...defaultProps,

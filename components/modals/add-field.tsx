@@ -85,7 +85,7 @@ export const AddFieldModal = () => {
                                   <SelectItem value={value} key={i}>
                                     {label}
                                   </SelectItem>
-                                )
+                                ),
                               )}
                             </SelectGroup>
                           </SelectContent>
@@ -132,7 +132,7 @@ export const AddFieldModal = () => {
                                     <SelectItem value={value} key={i}>
                                       {label}
                                     </SelectItem>
-                                  )
+                                  ),
                                 )}
                               </SelectGroup>
                             </SelectContent>
@@ -186,7 +186,7 @@ export const AddFieldModal = () => {
                                   <SelectItem value={value} key={i}>
                                     {label}
                                   </SelectItem>
-                                )
+                                ),
                               )}
                             </SelectGroup>
                           </SelectContent>
@@ -207,7 +207,6 @@ export const AddFieldModal = () => {
             }}
           </Form>
         </div>
-
         <DialogFooter>
           <Button type="submit">Save changes</Button>
         </DialogFooter>
