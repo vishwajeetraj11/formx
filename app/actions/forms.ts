@@ -83,9 +83,10 @@ export const generateForm = async (query: string, provider: Model) => {
       }
       if (!data) return;
       const formId = data?.[0].id;
-      const _fields = json.fields.map((field: Tables<"form_fields">) => ({
+      const _fields = json.fields.map((field: Tables<"form_fields">, index: number) => ({
         ...field,
         form_id: formId,
+        field_order: index+1,
         form_title: json?.formTitle,
       }));
       const { data: fieldsData, error: fieldsError } = await supabase
