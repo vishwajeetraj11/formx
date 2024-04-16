@@ -13,7 +13,7 @@ export type Database = {
         Row: {
           default_value: string | null
           error_message: string | null
-          field_order: number | null
+          field_order: number
           field_type: Database["public"]["Enums"]["field_type"]
           form_id: number
           form_title: string
@@ -37,7 +37,7 @@ export type Database = {
         Insert: {
           default_value?: string | null
           error_message?: string | null
-          field_order?: number | null
+          field_order: number
           field_type: Database["public"]["Enums"]["field_type"]
           form_id: number
           form_title: string
@@ -63,7 +63,7 @@ export type Database = {
         Update: {
           default_value?: string | null
           error_message?: string | null
-          field_order?: number | null
+          field_order?: number
           field_type?: Database["public"]["Enums"]["field_type"]
           form_id?: number
           form_title?: string
