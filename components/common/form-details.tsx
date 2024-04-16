@@ -1,6 +1,10 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 export default function FormDetails() {
   return (
@@ -34,6 +38,17 @@ export default function FormDetails() {
               className="min-h-[9.5rem]"
             />
           </div>
+          <Select
+            id="form-type"
+            label="Form Type"
+            options={[
+              { value: "survey", label: "Survey" },
+              { value: "quiz", label: "Quiz" },
+            ]}
+          />
+          <Button type="submit" className="w-full">
+            Update Form
+          </Button>
         </fieldset>
       </form>
     </div>
