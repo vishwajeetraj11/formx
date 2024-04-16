@@ -1,4 +1,7 @@
 "use server";
+import FormDetails from "@/components/common/form-details";
+import FormFooter from "@/components/common/form-footer";
+import FormNav from "@/components/common/form-nav";
 import ViewForm from "@/components/forms/view-form";
 import { createClient } from "@/utils/supabase/client";
 import React from "react";
@@ -22,9 +25,14 @@ const View = async (props: Props) => {
     .eq("id", id);
 
   return (
-    <div>
-      <ViewForm form_fields={data?.[0]?.form_fields || []} />
-    </div>
+    <>
+      <FormNav />
+      <div className="flex justify-between items-center">
+        <FormDetails />
+        <ViewForm form_fields={data?.[0]?.form_fields || []} />
+      </div>
+      <FormFooter />
+    </>
   );
 };
 
