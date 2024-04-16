@@ -1,30 +1,32 @@
-export const prompt = (query: string) => {
-  return `Create a form structure in JSON format based on the topic: ${query}. The JSON should have a structure like: 
+export const getPrompt = (query: string) => {
+  return `Create a form structure in JSON format based on the topic: ${query}. 
+          Also provide a valid form title as per user provided topic.
+          The JSON should have a structure like: 
                     {
-                        formTitle: "${query}", fields: 
-                        [
-                            {
-                                label          String // form label for the field
-                                name           String // unique name for form element name attribute
-                                type           FieldType      
-                                placeholder    String?
-                                required       Boolean        
-                                defaultValue   String?
-                                helpText       String?
-                                minValue       Int?
-                                maxValue       Int?
-                                minError       String?
-                                options         String[] // applicable for SELECT, MULTI_SELECT, INPUT_RADIO
-                                maxError       String?
-                                regex          String? 
-                                regexError     String?
-                                regexType      RegexType
-                                errorMessage   String?
-                                order          Int? // order of the fields
-                                imageUrl       String? 
-                                validationType ValidationType?
-                            }
-                        ]
+                        formTitle: String,
+                        fields: [
+                                  {
+                                      label           String // form label for the field
+                                      name            String // unique name for form element name attribute
+                                      field_type      FieldType      
+                                      placeholder     String?
+                                      required        Boolean        
+                                      default_value   String?
+                                      help_text       String?
+                                      min_value       Int?
+                                      max_value       Int?
+                                      min_error       String?
+                                      options         String[] // applicable for SELECT, MULTI_SELECT, INPUT_RADIO
+                                      max_error       String?
+                                      regex           String? 
+                                      regex_error     String?
+                                      regex_type      RegexType
+                                      error_message   String?
+                                      field_order     Int? // order of the fields
+                                      image_url       String? 
+                                      validation_type ValidationType?
+                                  }
+                                ]
                     },
                     use these 
                     enum FieldType {
