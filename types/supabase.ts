@@ -146,6 +146,48 @@ export type Database = {
           },
         ]
       }
+      responses: {
+        Row: {
+          field_id: number
+          form_id: number
+          id: number
+          response: string[] | null
+          response_date: string | null
+          user_id: number | null
+        }
+        Insert: {
+          field_id: number
+          form_id: number
+          id?: never
+          response?: string[] | null
+          response_date?: string | null
+          user_id?: number | null
+        }
+        Update: {
+          field_id?: number
+          form_id?: number
+          id?: never
+          response?: string[] | null
+          response_date?: string | null
+          user_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "responses_field_id_fkey"
+            columns: ["field_id"]
+            isOneToOne: false
+            referencedRelation: "form_fields"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "responses_form_id_fkey"
+            columns: ["form_id"]
+            isOneToOne: false
+            referencedRelation: "forms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
