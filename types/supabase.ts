@@ -14,46 +14,48 @@ export type Database = {
           default_value: string | null
           error_message: string | null
           field_order: number | null
-          field_type: Database["public"]["Enums"]["field_type"] | null
+          field_type: Database["public"]["Enums"]["field_type"]
           form_id: number
-          form_title: string | null
+          form_title: string
           help_text: string | null
           id: number
           image_url: string | null
-          label: string | null
+          label: string
           max_error: string | null
           max_value: number | null
           min_error: string | null
           min_value: number | null
-          name: string | null
+          name: string
+          options: string[] | null
           placeholder: string | null
           regex: string | null
           regex_error: string | null
           regex_type: Database["public"]["Enums"]["regex_type"] | null
-          required: boolean | null
+          required: boolean
           validation_type: Database["public"]["Enums"]["validation_type"] | null
         }
         Insert: {
           default_value?: string | null
           error_message?: string | null
           field_order?: number | null
-          field_type?: Database["public"]["Enums"]["field_type"] | null
+          field_type: Database["public"]["Enums"]["field_type"]
           form_id: number
-          form_title?: string | null
+          form_title: string
           help_text?: string | null
           id?: never
           image_url?: string | null
-          label?: string | null
+          label: string
           max_error?: string | null
           max_value?: number | null
           min_error?: string | null
           min_value?: number | null
-          name?: string | null
+          name?: string
+          options?: string[] | null
           placeholder?: string | null
           regex?: string | null
           regex_error?: string | null
           regex_type?: Database["public"]["Enums"]["regex_type"] | null
-          required?: boolean | null
+          required?: boolean
           validation_type?:
             | Database["public"]["Enums"]["validation_type"]
             | null
@@ -62,23 +64,24 @@ export type Database = {
           default_value?: string | null
           error_message?: string | null
           field_order?: number | null
-          field_type?: Database["public"]["Enums"]["field_type"] | null
+          field_type?: Database["public"]["Enums"]["field_type"]
           form_id?: number
-          form_title?: string | null
+          form_title?: string
           help_text?: string | null
           id?: never
           image_url?: string | null
-          label?: string | null
+          label?: string
           max_error?: string | null
           max_value?: number | null
           min_error?: string | null
           min_value?: number | null
-          name?: string | null
+          name?: string
+          options?: string[] | null
           placeholder?: string | null
           regex?: string | null
           regex_error?: string | null
           regex_type?: Database["public"]["Enums"]["regex_type"] | null
-          required?: boolean | null
+          required?: boolean
           validation_type?:
             | Database["public"]["Enums"]["validation_type"]
             | null
@@ -103,6 +106,7 @@ export type Database = {
           id: number
           published: boolean
           published_at: string | null
+          status: Database["public"]["Enums"]["form_status"]
           title: string
           updated_at: string
         }
@@ -115,6 +119,7 @@ export type Database = {
           id?: never
           published?: boolean
           published_at?: string | null
+          status?: Database["public"]["Enums"]["form_status"]
           title: string
           updated_at?: string
         }
@@ -127,6 +132,7 @@ export type Database = {
           id?: never
           published?: boolean
           published_at?: string | null
+          status?: Database["public"]["Enums"]["form_status"]
           title?: string
           updated_at?: string
         }
@@ -163,6 +169,7 @@ export type Database = {
         | "INPUT_PASSWORD"
         | "INPUT_EMAIL"
         | "INPUT_URL"
+      form_status: "DRAFT" | "PUBLISHED" | "DELETED" | "UNPUBLISHED"
       regex_type: "CONTAINS" | "NOT_CONTAINS" | "MATCHES" | "NOT_MATCHES"
       validation_type: "LENGTH" | "REGEX"
     }
