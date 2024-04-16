@@ -2,6 +2,7 @@ import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import MainLogo from "@/components/MainLogo";
 import Link from "next/link";
+import { AddFieldModal } from "@/components/modals/add-field";
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
@@ -25,7 +26,7 @@ export default async function Index() {
           {isSupabaseConnected && <AuthButton />}
         </div>
       </nav>
-
+      <AddFieldModal />
       <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
         <p>
           Made by{" "}
