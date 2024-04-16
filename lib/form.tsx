@@ -60,14 +60,12 @@ export const renderFields = (field: Tables<"form_fields">) => {
             <>
               <Label className="mb-2 block">{field.label}</Label>
               <RadioGroup value={input.value} onChange={input.onChange}>
-                {["male", "daddy", "milind"]?.map(
-                  (option: string, i: number) => (
-                    <div key={i} className="flex items-center space-x-2">
-                      <RadioGroupItem value={option} id={option + i + 1} />
-                      <Label htmlFor={option + i + 1}>{option}</Label>
-                    </div>
-                  )
-                )}
+                {field.options?.map((option: string, i: number) => (
+                  <div key={i} className="flex items-center space-x-2">
+                    <RadioGroupItem value={option} id={option + i + 1} />
+                    <Label htmlFor={option + i + 1}>{option}</Label>
+                  </div>
+                ))}
               </RadioGroup>
             </>
           )}
