@@ -1,10 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { renderFields } from "@/lib/form";
-import { createClient } from "@/utils/supabase/client";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Form } from "react-final-form";
-
 import React from "react";
 import { Tables } from "@/types/supabase";
 
@@ -21,7 +19,7 @@ const ViewForm = ({ form_fields }: Props) => {
     <div className="w-[600px]">
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, errors }) => {
+        render={({ handleSubmit }) => {
           return (
             <form
               onSubmit={handleSubmit}
