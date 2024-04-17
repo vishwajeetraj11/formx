@@ -22,15 +22,26 @@ const View = async (props: Props) => {
   const { data } = await supabaseClient
     .from("forms")
     .select(query)
-    .eq("id", id);
+    .eq("id", id)
+    .single();
 
   return (
     <>
       <FormNav />
-      <div className="flex justify-between items-center">
-        <ViewForm form_fields={data?.[0]?.form_fields || []} />
+      <div className="max-w-[1200px] flex-col w-full mx-auto flex">
+        <div className="w-[600px] mx-auto">
+          <img
+            className="w-full h-40 object-contain"
+            src={data?.cover_url || ""}
+          />
+          <h1 className="text-center">{data?.title}</h1>
+          <h1 className="text-center mt-3">{data?.description}</h1>
+        </div>
+        <div className="flex justify-between items-center mx-auto">
+          <ViewForm form_fields={data?.form_fields || []} />
+        </div>
+        <FormFooter />
       </div>
-      <FormFooter />
     </>
   );
 };

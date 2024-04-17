@@ -20,7 +20,8 @@ const FormByIdPage = async (props: Props) => {
   const { data } = await supabaseClient
     .from("forms")
     .select(query)
-    .eq("id", id);
+    .eq("id", id)
+    .single();
 
   if (!data) {
     return <></>;
@@ -32,15 +33,13 @@ const FormByIdPage = async (props: Props) => {
       <div className="max-w-[1200px] w-full mx-auto flex">
         <FormDetails
           formDetails={{
-            id: data?.[0]?.id,
-            title: data?.[0]?.title,
-            cover_url: data?.[0]?.cover_url,
-            description: data?.[0]?.description,
+            id: data?.id,
+            title: data?.title,
+            cover_url: data?.cover_url,
+            description: data?.description,
           }}
         />
-        {data?.[0]?.form_fields && (
-          <FormGenerator formFields={data?.[0]?.form_fields} />
-        )}
+        {data?.form_fields && <FormGenerator formFields={data?.form_fields} />}
       </div>
     </>
   );
