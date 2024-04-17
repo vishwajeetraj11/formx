@@ -28,7 +28,6 @@ const View = async (props: Props) => {
     <>
       <FormNav />
       <div className="flex justify-between items-center">
-        <FormDetails />
         <ViewForm form_fields={data?.[0]?.form_fields || []} />
       </div>
       <FormFooter />

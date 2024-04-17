@@ -1,3 +1,5 @@
+import FormDetails from "@/components/common/form-details";
+import FormNav from "@/components/common/form-nav";
 import FormGenerator from "@/components/forms/form";
 import { createClient } from "@/utils/supabase/server";
 
@@ -20,12 +22,27 @@ const FormByIdPage = async (props: Props) => {
     .select(query)
     .eq("id", id);
 
+  if (!data) {
+    return <></>;
+  }
+
   return (
-    <div className="max-w-[1200px] mx-auto">
-      {data?.[0]?.form_fields && (
-        <FormGenerator formFields={data?.[0]?.form_fields} />
-      )}
-    </div>
+    <>
+      <FormNav />
+      <div className="max-w-[1200px] w-full mx-auto flex">
+        <FormDetails
+          formDetails={{
+            id: data?.[0]?.id,
+            title: data?.[0]?.title,
+            cover_url: data?.[0]?.cover_url,
+            description: data?.[0]?.description,
+          }}
+        />
+        {data?.[0]?.form_fields && (
+          <FormGenerator formFields={data?.[0]?.form_fields} />
+        )}
+      </div>
+    </>
   );
 };
 
