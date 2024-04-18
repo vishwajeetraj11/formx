@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
           <FormNav />
-          {children}
+          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">{children}</div>
           <FormFooter />
         </main>
       </body>

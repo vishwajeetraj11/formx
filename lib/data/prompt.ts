@@ -37,10 +37,7 @@ export const getPrompt = (query: string) => {
                         INPUT_RADIO
                         COLOR_PICKER
                         DATE_PICKER
-                        TIME_PICKER
                         SELECT
-                        MULTI_SELECT
-                        FILE_UPLOAD
                         INPUT_PASSWORD
                         INPUT_EMAIL
                         INPUT_URL

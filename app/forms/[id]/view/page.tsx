@@ -29,13 +29,14 @@ const View = async (props: Props) => {
     <>
       <FormNav />
       <div className="max-w-[1200px] flex-col w-full mx-auto flex">
-        <div className="w-[600px] mx-auto">
-          <img
-            className="w-full h-40 object-contain"
-            src={data?.cover_url || ""}
-          />
-          <h1 className="text-center">{data?.title}</h1>
-          <h1 className="text-center mt-3">{data?.description}</h1>
+        <div className="w-[600px] mx-auto mt-4">
+          {data?.cover_url && (
+            <img className="w-full h-40 object-contain" src={data?.cover_url} />
+          )}
+          {data?.title && <h1 className="text-center">{data.title}</h1>}
+          {data?.description && (
+            <h1 className="text-center mt-3">{data.description}</h1>
+          )}
         </div>
         <div className="flex justify-between items-center mx-auto">
           <ViewForm form_fields={data?.form_fields || []} />
