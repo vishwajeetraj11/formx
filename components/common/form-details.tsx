@@ -2,11 +2,13 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Tables } from "@/types/supabase";
 import { Form, Field } from "react-final-form";
 import { createClient } from "@/utils/supabase/client";
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 interface Props {
   formDetails: Pick<
@@ -16,6 +18,8 @@ interface Props {
 }
 
 export default function FormDetails({ formDetails }: Props) {
+  const [formContent, setFormContent] = useState("");
+
   const onSubmit = async (values: Record<string, string>) => {
     const supabaseClient = createClient();
     console.log(formDetails.id);
@@ -44,7 +48,7 @@ export default function FormDetails({ formDetails }: Props) {
             onSubmit={handleSubmit}
             className="grid w-full items-start gap-6"
           >
-            <fieldset className="grid gap-6 rounded-lg border p-4">
+            <div className="grid gap-6 rounded-lg border p-4">
               <legend className="-ml-1 px-1 text-sm font-medium">
                 Form Details
               </legend>
@@ -78,25 +82,23 @@ export default function FormDetails({ formDetails }: Props) {
                   </div>
                 )}
               />
-              <Field
-                name="description"
-                render={({ input }) => (
-                  <div className="grid gap-3">
-                    <Label htmlFor="content">Content</Label>
-                    <Textarea
+              <div className="grid gap-4">
+                <Label>Form Contents</Label>
+                <Field
+                  name="description"
+                  render={({ input }) => (
+                    <ReactQuill
+                      theme="snow"
                       value={input.value}
                       onChange={input.onChange}
-                      id="content"
-                      placeholder="You are a..."
-                      className="min-h-[9.5rem]"
                     />
-                  </div>
-                )}
-              />
-              <Button type="submit" className="w-full">
+                  )}
+                />
+              </div>
+              <Button type="submit" className="w-full z-9">
                 Update Form
               </Button>
-            </fieldset>
+            </div>
           </form>
         )}
       />
