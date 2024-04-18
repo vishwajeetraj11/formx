@@ -88,14 +88,25 @@ export default function FormDetails({ formDetails }: Props) {
                   name="description"
                   render={({ input }) => (
                     <ReactQuill
-                      theme="snow"
+                      theme={"snow"}
                       value={input.value}
                       onChange={input.onChange}
+                      placeholder="Enter description here..."
+                      modules={{
+                        toolbar: [
+                          ["bold", "italic", "underline", "strike"],
+                          ["blockquote", "code-block"],
+                          [{ list: "ordered" }, { list: "bullet" }],
+                          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                          [{ color: [] }, { background: [] }],
+                          ["clean"],
+                        ],
+                      }}
                     />
                   )}
                 />
               </div>
-              <Button type="submit" className="w-full z-9">
+              <Button type="submit" className="w-full">
                 Update Form
               </Button>
             </div>
