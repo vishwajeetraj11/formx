@@ -13,7 +13,10 @@ export default async function FormNav() {
     <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
       <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
         <MainLogo />
-        <Link href={"/forms/analytics"}>Analytics</Link>
+        <div className="ml-auto flex gap-4">
+          <Link href={"/forms/analytics"}>Analytics</Link>
+          <Link href={"/forms/"}>Forms</Link>
+        </div>
         {user && <AuthButton />}
       </div>
     </nav>
