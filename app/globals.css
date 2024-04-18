@@ -73,6 +73,26 @@
   body {
     @apply bg-background text-foreground;
   }
+  .no-tailwindcss-base h1,
+  .no-tailwindcss-base h2,
+  .no-tailwindcss-base h3,
+  .no-tailwindcss-base h4,
+  .no-tailwindcss-base h5,
+  .no-tailwindcss-base h6 {
+    font-size: revert;
+    font-weight: revert;
+  }
+
+  .no-tailwindcss-base ol,
+  .no-tailwindcss-base ul {
+    list-style: revert;
+    margin: revert;
+    padding: revert;
+  }
+  .no-tailwindcss-base a {
+    color: revert;
+    text-decoration: revert;
+  }
 }
 
 .ql-editor {

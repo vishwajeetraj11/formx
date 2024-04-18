@@ -26,6 +26,8 @@ const FormByIdPage = async (props: Props) => {
     return <></>;
   }
 
+  // console.log(data);
+
   return (
     <>
       <div className="max-w-[1200px] w-full mx-auto flex">
