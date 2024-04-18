@@ -7,8 +7,9 @@ import { Tables } from "@/types/supabase";
 import { Form, Field } from "react-final-form";
 import { createClient } from "@/utils/supabase/client";
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+const DynamicQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 interface Props {
   formDetails: Pick<
@@ -90,7 +91,7 @@ export default function FormDetails({ formDetails }: Props) {
                 <Field
                   name="description"
                   render={({ input }) => (
-                    <ReactQuill
+                    <DynamicQuill
                       theme={"snow"}
                       value={input.value}
                       onChange={input.onChange}
