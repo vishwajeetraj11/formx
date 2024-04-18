@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/server";
 import AuthButton from "../AuthButton";
 import MainLogo from "../MainLogo";
 import Link from "next/link";

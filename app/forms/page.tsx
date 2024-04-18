@@ -20,7 +20,6 @@ export default async function Home() {
 
   return (
     <>
-      <FormNav />
       <div className="max-w-[1200px] mx-auto">
         {forms?.data?.length === 0 ? (
           <Card>

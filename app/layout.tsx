@@ -1,4 +1,6 @@
 import "./globals.css";
+import FormNav from "@/components/common/form-nav";
+import FormFooter from "@/components/common/form-footer";
 import { Figtree } from "next/font/google";
 
 const figtree = Figtree({
@@ -26,7 +28,9 @@ export default function RootLayout({
     <html lang="en" className={figtree.className + " antialiased"}>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
+          <FormNav />
           {children}
+          <FormFooter />
         </main>
       </body>
     </html>
