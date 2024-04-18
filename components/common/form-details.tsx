@@ -21,9 +21,10 @@ export default function FormDetails({ formDetails }: Props) {
   const [formContent, setFormContent] = useState("");
 
   const onSubmit = async (values: Record<string, string>) => {
+    // console.log(values);
     const supabaseClient = createClient();
-    console.log(formDetails.id);
-    const damn = await supabaseClient
+    // console.log(formDetails.id);
+    const { error, data } = await supabaseClient
       .from("forms")
       .update({
         title: values.title,
@@ -32,6 +33,8 @@ export default function FormDetails({ formDetails }: Props) {
       })
       .eq("id", formDetails.id)
       .select("*");
+    // console.log(error);
+    // console.log(data);
   };
 
   return (

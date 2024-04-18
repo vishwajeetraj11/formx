@@ -27,6 +27,8 @@ const FormByIdPage = async (props: Props) => {
     return <></>;
   }
 
+  // console.log(data);
+
   return (
     <>
       <FormNav />
