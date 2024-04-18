@@ -1,5 +1,10 @@
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import { Figtree } from "next/font/google";
+
+const figtree = Figtree({
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -18,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className + " antialiased"}>
+    <html lang="en" className={figtree.className + " antialiased"}>
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex flex-col items-center">
           {children}
