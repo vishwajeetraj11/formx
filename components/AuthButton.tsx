@@ -32,9 +32,7 @@ export default async function AuthButton() {
         className="rounded-full"
       />
       <form action={signOut}>
-        <Button
-        variant="outline"
-        >
+        <Button variant="ghost">
           <LogOut size={16} />
         </Button>
       </form>

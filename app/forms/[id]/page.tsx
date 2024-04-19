@@ -1,5 +1,4 @@
 import FormDetails from "@/components/common/form-details";
-import FormNav from "@/components/common/form-nav";
 import FormGenerator from "@/components/forms/form";
 import { createClient } from "@/utils/supabase/server";
 
@@ -31,7 +30,6 @@ const FormByIdPage = async (props: Props) => {
 
   return (
     <>
-      <FormNav />
       <div className="max-w-[1200px] w-full mx-auto flex">
         <FormDetails
           formDetails={{

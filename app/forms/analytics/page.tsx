@@ -11,6 +11,7 @@ import { BarChartHero } from "@/components/charts/bar-chart";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { timeDifference } from "@/lib/utils";
 
 type Props = {};
 
@@ -25,6 +26,8 @@ const Analytics = async (props: Props) => {
   }
 
   const forms = await supabase.from("forms").select("*");
+
+  const currentDate = new Date();
 
   return (
     <div className="w-[1200px] mx-auto">
@@ -48,8 +51,12 @@ const Analytics = async (props: Props) => {
                         450<span className="ml-2 font-normal">Responses</span>
                       </p>
                       <p className="font-bold">
-                        <span className="mr-2 font-normal">Created At</span>
-                        {form.created_at.toString()}
+                        <span className="mr-2 font-normal">Created </span>
+                        {/* {form.created_at.toString()} */}
+                        {timeDifference(
+                          currentDate,
+                          new Date(form?.created_at),
+                        )}
                       </p>
                     </CardContent>
                   </Card>
