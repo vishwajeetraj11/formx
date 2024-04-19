@@ -21,7 +21,7 @@ export default function FormGenerator({ formFields }: FormProps) {
         render={({ handleSubmit }) => (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-[600px] px-10 mt-10"
+            className="flex flex-col gap-4 w-[600px] px-10"
           >
             <RenderFields
               fields={formFields}
