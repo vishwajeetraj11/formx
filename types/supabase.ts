@@ -200,7 +200,68 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_experience_counts:
+        | {
+            Args: {
+              form_id_param: number
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              form_id_param: number
+              field_id_param: number
+            }
+            Returns: Json
+          }
+      get_grouped_responses: {
+        Args: {
+          form_id_param: number
+        }
+        Returns: {
+          label: string
+          responses: Json
+        }[]
+      }
+      get_grouped_responses_by_field: {
+        Args: {
+          form_id_param: number
+        }
+        Returns: {
+          field: string
+          responses: Json
+        }[]
+      }
+      get_response_count: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          response: string
+          response_count: number
+        }[]
+      }
+      get_response_count_fixed: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          response: Json
+          response_count: number
+        }[]
+      }
+      getfreqofrespbyid: {
+        Args: {
+          fieldid: number
+        }
+        Returns: {
+          response: string
+          response_count: number
+        }[]
+      }
+      hello_world: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          response: string
+          response_count: number
+        }[]
+      }
     }
     Enums: {
       field_type:

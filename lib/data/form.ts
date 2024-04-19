@@ -1,4 +1,4 @@
-export const fieldTypes = {
+export const fieldTypes: {[key: string]: string} = {
     INPUT_TEXT: "Text",
     INPUT_TEXT_AREA: "Text Area",
     INPUT_NUMBER: "Number",

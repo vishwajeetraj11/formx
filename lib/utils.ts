@@ -33,3 +33,10 @@ export function timeDifference(current: Date, previous: Date): string {
     return `${Math.round(elapsed / msPerYear)} years ago`;
   }
 }
+
+
+
+// write a function to capitalize a string
+export function capitalize(str: string) {
+  return str.replace(/^\w/, c => c.toUpperCase());
+}

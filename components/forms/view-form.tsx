@@ -14,7 +14,9 @@ type Props = {
 const supabase = createClient();
 
 const ViewForm = ({ form_fields }: Props) => {
+  console.log(form_fields);
   const onSubmit = async (values: Record<string, any>) => {
+    console.log(values);
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -39,7 +41,8 @@ const ViewForm = ({ form_fields }: Props) => {
     <div className="w-[600px]">
       <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit }) => {
+        render={({ handleSubmit, errors }) => {
+          console.log(errors);
           return (
             <form
               onSubmit={handleSubmit}

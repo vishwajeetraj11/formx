@@ -43,6 +43,8 @@
     "@remixicon/react": "^4.2.0",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
+    "@tanstack/match-sorter-utils": "^8.15.1",
+    "@tanstack/react-table": "^8.16.0",
     "@tremor/react": "^3.16.0",
     "autoprefixer": "10.4.17",
     "axios": "^1.6.8",

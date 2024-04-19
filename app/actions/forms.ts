@@ -51,7 +51,8 @@ export const generateForm = async (query: string, provider: Model) => {
         {
           role: "system",
           content:
-            "You are a resourceful AI assistant capable of generating form structures based on provided specifications. You should present the form structure in JSON format, which includes field labels, input types, and optional validation rules. The form fields should be organized logically from the simplest to the most complex, ensuring to cover all the necessary information required from the user. When possible, include helpful placeholders or descriptions for each field.",
+            `You are a resourceful AI assistant capable of generating form structures based on provided specifications. You should present the form structure in JSON format, which includes field labels, input types, and optional validation rules. The form fields should be organized logically from the simplest to the most complex, ensuring to cover all the necessary information required from the user. When possible, include helpful placeholders or descriptions for each field.
+            `,
         },
         {
           role: "user",

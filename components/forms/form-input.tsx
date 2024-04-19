@@ -34,24 +34,24 @@ const FormInput = ({ field }: Props) => {
   );
 };
 
-export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;
+export const EMAIL_REGEX = /[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/;
 
 export const validationFns = {
   email: (value: string, field: Tables<"form_fields">): string => {
     if (!value && field.required) return "Email is required";
-    if (!EMAIL_REGEX.test(value)) return "Email is invalid";
+    if (!EMAIL_REGEX.test(value)) return "Email is invalid.";
     return "";
   },
   url: (value: string, field: Tables<"form_fields">): string => {
-    try {
-      if (field.required) {
-        if (!value) return "Url is required";
-      }
-      new URL(value);
-      return "Not a valid url";
-    } catch (e) {
-      return "";
-    }
+    // try {
+    //   if (field.required) {
+    //     if (!value) return "Url is required";
+    //   }
+    //   new URL(value);
+    //   return "Not a valid url";
+    // } catch (e) {
+    return "";
+    // }
   },
   text: (value: string, field: Tables<"form_fields">): string => {
     if (field.required) {
@@ -96,7 +96,7 @@ export const getValidationFn = (field: Tables<"form_fields">) => {
 
 export const getHTMLAttributesForInputType = (
   field: Tables<"form_fields">,
-  defaultProps: Record<string, unknown>,
+  defaultProps: Record<string, unknown>
 ) => {
   const baseAttributes = {
     ...defaultProps,
