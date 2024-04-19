@@ -9,8 +9,11 @@ import { cn } from "@/lib/utils";
 import { renderFields } from "@/lib/form";
 import { getStyle } from "@/lib/utils/form";
 import { Tables } from "@/types/supabase";
+import useGlobalStore from "@/lib/stores/global";
 
 const FieldInnerList = ({ fields }: { fields: Tables<"form_fields">[] }) => {
+  const { toggleAddModal } = useGlobalStore();
+
   return (
     <div className="flex flex-col">
       {fields.map((field, index: number) => {
@@ -48,7 +51,7 @@ const FieldInnerList = ({ fields }: { fields: Tables<"form_fields">[] }) => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => {}}
+                    onClick={() => toggleAddModal()}
                     className={cn(
                       ...iconClasses,
                       "bg-green-500 top-[100%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
@@ -68,7 +71,7 @@ const FieldInnerList = ({ fields }: { fields: Tables<"form_fields">[] }) => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => {}}
+                    onClick={() => toggleAddModal()}
                     className={cn(
                       ...iconClasses,
                       "bg-blue-500 top-[100%] right-[100px] translate-y-[-50%]"

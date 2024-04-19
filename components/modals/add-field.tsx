@@ -7,7 +7,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,13 +21,15 @@ import {
 import { fieldTypes, regexTypes, validationTypes } from "@/lib/data/form";
 import { Checkbox } from "../ui/checkbox";
 import { Field, Form } from "react-final-form";
+import useGlobalStore from "@/lib/stores/global";
 
 export const AddFieldModal = () => {
+  const { addModalOpen, toggleAddModal } = useGlobalStore();
   return (
-    <Dialog open>
-      <DialogTrigger asChild>
+    <Dialog open={addModalOpen} onOpenChange={toggleAddModal}>
+      {/* <DialogTrigger asChild>
         <Button variant="outline">Add Field</Button>
-      </DialogTrigger>
+      </DialogTrigger> */}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add Fields</DialogTitle>
@@ -85,7 +86,7 @@ export const AddFieldModal = () => {
                                   <SelectItem value={value} key={i}>
                                     {label}
                                   </SelectItem>
-                                ),
+                                )
                               )}
                             </SelectGroup>
                           </SelectContent>
@@ -132,7 +133,7 @@ export const AddFieldModal = () => {
                                     <SelectItem value={value} key={i}>
                                       {label}
                                     </SelectItem>
-                                  ),
+                                  )
                                 )}
                               </SelectGroup>
                             </SelectContent>
@@ -186,7 +187,7 @@ export const AddFieldModal = () => {
                                   <SelectItem value={value} key={i}>
                                     {label}
                                   </SelectItem>
-                                ),
+                                )
                               )}
                             </SelectGroup>
                           </SelectContent>

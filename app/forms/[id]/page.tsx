@@ -1,5 +1,6 @@
 import FormDetails from "@/components/common/form-details";
 import FormGenerator from "@/components/forms/form";
+import { AddFieldModal } from "@/components/modals/add-field";
 import { createClient } from "@/utils/supabase/server";
 
 interface Props {
@@ -40,6 +41,7 @@ const FormByIdPage = async (props: Props) => {
           }}
         />
         {data?.form_fields && <FormGenerator formFields={data?.form_fields} />}
+        <AddFieldModal />
       </div>
     </>
   );
