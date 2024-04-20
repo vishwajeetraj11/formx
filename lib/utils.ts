@@ -34,9 +34,13 @@ export function timeDifference(current: Date, previous: Date): string {
   }
 }
 
-
-
-// write a function to capitalize a string
 export function capitalize(str: string) {
-  return str.replace(/^\w/, c => c.toUpperCase());
+  return str.replace(/^\w/, (c) => c.toUpperCase());
+}
+
+export function truncateString(str: string, num: number) {
+  if (str.length <= num) {
+    return str;
+  }
+  return str.slice(0, num) + "...";
 }
