@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={figtree.className + " antialiased"}>
       <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
+        <main className="min-h-screen flex flex-col justify-between items-center">
           <FormNav />
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">{children}</div>
           <FormFooter />
