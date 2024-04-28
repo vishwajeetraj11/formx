@@ -11,7 +11,7 @@ import { BarChartHero } from "@/components/charts/bar-chart";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { timeDifference } from "@/lib/utils";
+import { timeDifference, truncateString } from "@/lib/utils";
 
 type Props = {};
 
@@ -26,7 +26,6 @@ const Analytics = async (props: Props) => {
   }
 
   const forms = await supabase.from("forms").select("*");
-
   const currentDate = new Date();
 
   return (
@@ -45,14 +44,15 @@ const Analytics = async (props: Props) => {
               <CarouselItem className="basis-1/4">
                 <div className="p-1">
                   <Card>
-                    <CardContent className="flex flex-col items justify-center p-6">
-                      <p className="">{form.title}</p>
-                      <p className="font-bold">
-                        450<span className="ml-2 font-normal">Responses</span>
-                      </p>
-                      <p className="font-bold">
-                        <span className="mr-2 font-normal">Created </span>
-                        {/* {form.created_at.toString()} */}
+                    <CardContent className="flex flex-col h-28 w-48 p-6">
+                      <div>
+                        <p>{truncateString(form.title, 16)}</p>
+                        <p className="font-bold text-xs mt-1">
+                          450<span className="ml-1 font-normal">Responses</span>
+                        </p>
+                      </div>
+                      <p className="font-bold text-xs">
+                        <span className="mr-1 font-normal">Created </span>
                         {timeDifference(
                           currentDate,
                           new Date(form?.created_at),
