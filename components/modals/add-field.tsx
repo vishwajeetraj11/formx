@@ -22,7 +22,6 @@ import { fieldTypes, regexTypes, validationTypes } from "@/lib/data/form";
 import { Checkbox } from "../ui/checkbox";
 import { Field, Form } from "react-final-form";
 import useGlobalStore from "@/lib/stores/global";
-import { Tables } from "@/types/supabase";
 
 export const AddFieldModal = () => {
   const { addModalOpen, toggleAddModal } = useGlobalStore();
@@ -33,9 +32,6 @@ export const AddFieldModal = () => {
 
   return (
     <Dialog open={addModalOpen} onOpenChange={toggleAddModal}>
-      {/* <DialogTrigger asChild>
-        <Button variant="outline">Add Field</Button>
-      </DialogTrigger> */}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add Fields</DialogTitle>
