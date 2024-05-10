@@ -2,6 +2,7 @@ import "./globals.css";
 import FormNav from "@/components/common/form-nav";
 import FormFooter from "@/components/common/form-footer";
 import { Figtree } from "next/font/google";
+import { Toaster } from "sonner";
 
 const figtree = Figtree({
   subsets: ["latin", "latin-ext"],
@@ -33,6 +34,7 @@ export default function RootLayout({
           <FormFooter />
         </main>
       </body>
+      <Toaster richColors />
     </html>
   );
 }
