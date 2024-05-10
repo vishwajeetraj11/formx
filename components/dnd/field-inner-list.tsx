@@ -10,6 +10,8 @@ import { renderFields } from "@/lib/form";
 import { getStyle } from "@/lib/utils/form";
 import { Tables } from "@/types/supabase";
 import useGlobalStore from "@/lib/stores/global";
+import { createClient } from "@/utils/supabase/client";
+import { toast } from "sonner";
 
 const FieldInnerList = ({ fields }: { fields: Tables<"form_fields">[] }) => {
   const { toggleAddModal } = useGlobalStore();
@@ -61,7 +63,22 @@ const FieldInnerList = ({ fields }: { fields: Tables<"form_fields">[] }) => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => {}}
+                    onClick={async () => {
+                      const supabase = createClient();
+                      const { data, error, status, statusText, count } =
+                        await supabase
+                          .from("form_fields")
+                          .delete()
+                          .eq("id", field.id)
+                          .single();
+                      console.log({ data, error, status, statusText, count });
+                      if (error) {
+                        toast.error("error");
+                      }
+                      if (data) {
+                        toast.success("deleted");
+                      }
+                    }}
                     className={cn(
                       ...iconClasses,
                       "bg-rose-500 top-[100%] right-0 translate-x-[-50%] translate-y-[-50%]"
