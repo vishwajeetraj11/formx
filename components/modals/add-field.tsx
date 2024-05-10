@@ -22,12 +22,30 @@ import { fieldTypes, regexTypes, validationTypes } from "@/lib/data/form";
 import { Checkbox } from "../ui/checkbox";
 import { Field, Form } from "react-final-form";
 import useGlobalStore from "@/lib/stores/global";
+import { createClient } from "@/utils/supabase/client";
+import { Tables } from "@/types/supabase";
 
-export const AddFieldModal = () => {
-  const { addModalOpen, toggleAddModal } = useGlobalStore();
+type Props = {
+  formId: string;
+  formData: Tables<"forms"> & { form_fields: Tables<"form_fields">[] };
+};
 
-  const onSubmit = (values: Record<string, any>) => {
-    console.log(values);
+export const AddFieldModal = ({ formId, formData }: Props) => {
+  const { addModalOpen, toggleAddModal, addFieldOrder } = useGlobalStore();
+  const supabase = createClient();
+
+  const onSubmit = async (values: Omit<Tables<"form_fields">, "id">) => {
+    const body: Omit<Tables<"form_fields">, "id"> = {
+      ...values,
+      form_id: parseInt(formId),
+      form_title: formData.title,
+      field_order: formData.form_fields.length,
+      name: "field_one",
+    };
+    const { data, error } = await supabase
+      .from("form_fields")
+      .insert(body)
+      .single();
   };
 
   return (
@@ -42,26 +60,34 @@ export const AddFieldModal = () => {
 
         <div className="py-4 flex flex-col gap-4 h-[600px] overflow-scroll px-4">
           <Form
-            initialValues={{
-              label: "",
-              type: "",
-              placeholder: "",
-              required: false,
-              defaultValue: "",
-              helpText: "",
-              validationType: "",
-              regex: "",
-            }}
+            initialValues={
+              {
+                // label: "",
+                // field_type: "",
+                // placeholder: "",
+                // required: false,
+                // default_value: "",
+                // help_text: "",
+                // validation_type: "",
+                // regex: "",
+                // min_value: 0,
+                // max_value: 0,
+                // min_error: "",
+                // max_error: "",
+                // regex_type: "",
+                // regex_error: "",
+              }
+            }
             onSubmit={onSubmit}
           >
             {({ handleSubmit, values, error }) => {
-              const isLengthValidation = values.validationType === "LENGTH";
-              const isRegexValidation = values.validationType === "REGEX";
+              const isLengthValidation = values.validation_type === "LENGTH";
+              const isRegexValidation = values.validation_type === "REGEX";
               const showValidationType =
-                values.type !== "INPUT_CHECKBOX" &&
-                values.type !== "INPUT_RADIO" &&
-                values.type !== "COLOR_PICKER" &&
-                values.type !== "DATE_PICKER";
+                values.field_type !== "INPUT_CHECKBOX" &&
+                values.field_type !== "INPUT_RADIO" &&
+                values.field_type !== "COLOR_PICKER" &&
+                values.field_type !== "DATE_PICKER";
               return (
                 <form onSubmit={handleSubmit}>
                   <Field
@@ -77,8 +103,9 @@ export const AddFieldModal = () => {
                       </div>
                     )}
                   />
-                  <Field name="type">
-                    {({ input }) => (
+                  <Field
+                    name="field_type"
+                    render={({ input }) => (
                       <div>
                         <Label>Field Type</Label>
                         <Select
@@ -104,7 +131,7 @@ export const AddFieldModal = () => {
                         </Select>
                       </div>
                     )}
-                  </Field>
+                  ></Field>
                   <div>
                     <Field
                       name="placeholder"
@@ -120,22 +147,36 @@ export const AddFieldModal = () => {
                       )}
                     ></Field>
                   </div>
-                  <Field name="required">
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="required" />
-                        <Label htmlFor="required">Is It Required?</Label>
-                      </div>
-                    </div>
-                  </Field>
-                  <Field name="defaultValue">
-                    <div>
-                      <Label>Default Value</Label>
-                      <Input placeholder="Please enter default value" />
-                    </div>
-                  </Field>
                   <Field
-                    name="helpText"
+                    name="required"
+                    render={({ input }) => (
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <Checkbox
+                            id="required"
+                            value={input.value}
+                            onChange={input.onChange}
+                          />
+                          <Label htmlFor="required">Is It Required?</Label>
+                        </div>
+                      </div>
+                    )}
+                  ></Field>
+                  <Field
+                    name="default_value"
+                    render={({ input }) => (
+                      <div>
+                        <Label>Default Value</Label>
+                        <Input
+                          value={input.value}
+                          onChange={input.onChange}
+                          placeholder="Please enter default value"
+                        />
+                      </div>
+                    )}
+                  ></Field>
+                  <Field
+                    name="help_text"
                     render={({ input }) => (
                       <div>
                         <Label>Help Text</Label>
@@ -149,7 +190,7 @@ export const AddFieldModal = () => {
                   ></Field>
 
                   {showValidationType && (
-                    <Field name="validationType">
+                    <Field name="validation_type">
                       {({ input }) => (
                         <div>
                           <Label>Validation Type</Label>
@@ -182,7 +223,7 @@ export const AddFieldModal = () => {
                     <>
                       <div className="flex gap-4">
                         <Field
-                          name="minValue"
+                          name="min_value"
                           render={({ input }) => (
                             <div>
                               <Label>Min Value</Label>
@@ -197,7 +238,7 @@ export const AddFieldModal = () => {
                         ></Field>
 
                         <Field
-                          name="maxValue"
+                          name="max_value"
                           render={({ input }) => (
                             <div>
                               <Label>Max Value</Label>
@@ -211,6 +252,7 @@ export const AddFieldModal = () => {
                         ></Field>
                       </div>
                       <Field
+                        name="min_error"
                         render={({ input }) => (
                           <div>
                             <Label>Min Error</Label>
@@ -221,11 +263,10 @@ export const AddFieldModal = () => {
                             />
                           </div>
                         )}
-                        name="minError"
                       ></Field>
 
                       <Field
-                        name="maxError"
+                        name="max_error"
                         render={({ input }) => (
                           <div>
                             <Label>Max Error</Label>
@@ -243,7 +284,7 @@ export const AddFieldModal = () => {
                   {isRegexValidation && (
                     <>
                       <Field
-                        name="regexType"
+                        name="regex_type"
                         render={() => (
                           <div>
                             <Label>Regex Type</Label>
@@ -267,7 +308,7 @@ export const AddFieldModal = () => {
                         )}
                       ></Field>
                       <Field
-                        name="regexError"
+                        name="regex_error"
                         render={({ input }) => (
                           <div>
                             <Label>Regex Error</Label>

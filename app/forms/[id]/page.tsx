@@ -27,8 +27,6 @@ const FormByIdPage = async (props: Props) => {
     return <></>;
   }
 
-  // console.log(data);
-
   return (
     <>
       <div className="max-w-[1200px] w-full mx-auto flex">
@@ -41,7 +39,7 @@ const FormByIdPage = async (props: Props) => {
           }}
         />
         {data?.form_fields && <FormGenerator formFields={data?.form_fields} />}
-        <AddFieldModal />
+        <AddFieldModal formId={id} formData={data} />
       </div>
     </>
   );
